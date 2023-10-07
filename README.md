@@ -4,9 +4,10 @@ The impetus for this little project is Marco Polo deleting Polos than are one ye
 
 ## Features
 
-- Watch videos.
-- Tag videos with a person's name or a conversion name.
-- Filter by tags.
+[x] Watch videos.
+[~] Layout videos in an attractive way.
+[] Tag videos with a person's name or a conversion name.
+[] Filter by tags.
 
 ## Roadmap
 
@@ -14,10 +15,11 @@ The impetus for this little project is Marco Polo deleting Polos than are one ye
 
 - Scaffold basic app
 - Build out basic video playing
+  - There are two basic video dimensions: 432x640 and 640x480, HxW.
 
 ### Phase 2
 
-- Dynamically generate list of video
+[x] Dynamically generate list of video
 
 ### Phase 3
 
