@@ -5,18 +5,22 @@ import * as elements from "typed-html";
 import { TodoItem, TodoList } from "./todo";
 import { addTodo, deleteTodo, getTodos, toggleTodo } from "./db";
 import { BaseHtml } from "./basehtml";
+import { VideoList } from "./video";
 
 const app = new Elysia()
   .use(html())
   .get("/", ({ html }) =>
     html(
       <BaseHtml>
-        <body
-          class="flex w-full h-screen justify-center items-center"
-          hx-get="/todos"
-          hx-swap="innerHTML"
-          hx-trigger="load"
-        />
+        <body>
+          <VideoList
+            {...{
+              paths: [1, 2, 3, 4, 5, 6, 7, 8, 2, 3, 4, 5, 6, 7, 8].map(
+                (_) => "video1"
+              ),
+            }}
+          ></VideoList>
+        </body>
       </BaseHtml>
     )
   )
@@ -41,6 +45,10 @@ const app = new Elysia()
     }),
   })
   .get("/styles.css", () => Bun.file("./tailwind-gen/styles.css"))
+  .get("/static/example-1080p.mp4", () =>
+    Bun.file("./static/coverr-7522-1080p.mp4")
+  )
+  .get("/video1", () => Bun.file("./static/coverr-7522-1080p.mp4"))
   .listen(3000);
 
 console.log(

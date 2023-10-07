@@ -2,7 +2,7 @@ import * as elements from "typed-html";
 
 export const BaseHtml = ({ children }: elements.Children) => `
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-stone-50">
 
 <head>
   <meta charset="UTF-8">
