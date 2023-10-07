@@ -176,3 +176,6 @@ dist
 
 # tailwind generated css
 tailwind-gen/
+
+# videos
+static/
