@@ -19,3 +19,7 @@ export const GetFilePaths = async (
 
 export const GetFile = (fileName: string, folderPath: string): BunFile =>
   Bun.file(join(folderPath, fileName));
+
+export const SaveFile = (fileName: string, folderPath: string, file: File): void => {
+  Bun.write(join(folderPath, fileName), file)
+}

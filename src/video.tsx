@@ -1,4 +1,8 @@
+import { BunFile } from "bun";
 import * as elements from "typed-html";
+import { db } from "./db";
+import { videos } from "./db/schema";
+import { join } from "path";
 
 type Video = {
   src: string;
@@ -52,3 +56,19 @@ export function VideoList({ paths }: { paths: string[] }) {
     </div>
   );
 }
+
+const videoUploadDir = "/Users/SarahJoachim/source/yolo-polo/upload";
+
+export const SaveVideo = async (file: File): Promise<boolean> => {
+  const fileUuid = crypto.randomUUID();
+  await db
+    .insert(videos)
+    .values({ name: file.name ?? fileUuid, hash: fileUuid })
+    .returning({ id: videos.id, name: videos.name, hash: videos.hash });
+
+  const writtenBytes = await Bun.write(join(videoUploadDir, fileUuid), file);
+  return writtenBytes > 0;
+};
+
+export const SaveVideos = async (files: File[]) =>
+  (await Promise.all(files.map(SaveVideo))).every((written) => written);
